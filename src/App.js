@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import TodoList from "./TodoList";
 import { v4 as uuidv4 } from "uuid";
+import "./App.css";
 
 function App() {
   const [todos, setTodos] = useState([]);
@@ -33,13 +34,21 @@ function App() {
   }
 
   return (
-    <>
-      <TodoList taskList={todos} toggleTodo={toggleTodo} />
-      <input ref={todoNameRef} type="text" />
-      <button onClick={handleAddTodo}>Add Todo</button>
-      <button onClick={handleClear}>Clear completed Todos</button>
-      <div>{todos.filter((todo) => !todo.complete).length} left to do</div>
-    </>
+    <div className="container">
+      <div className="content">
+        <div className="app-container">
+          <TodoList taskList={todos} toggleTodo={toggleTodo} />
+          <div className="input-container">
+            <input ref={todoNameRef} type="text" />
+            <button onClick={handleAddTodo}>Add</button>
+            <button onClick={handleClear}>Clear</button>
+          </div>
+          <div>
+            {todos.filter((todo) => !todo.complete).length} tarefa restante.
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 
